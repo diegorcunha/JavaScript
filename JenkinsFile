@@ -1,0 +1,26 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Build') { 
+	    when {
+                branch "master"
+	    }
+            steps { 
+		sh '''#!/bin/sh
+			echo "Building..."
+			sudo gcloud auth configure-docker
+			sudo docker build -t testscrip:${BUILD_NUMBER} . 
+			sudo docker tag testscript:${BUILD_NUMBER} "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
+			sudo docker push "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
+		'''
+            }
+        }
+        stage('Test'){
+            steps {
+		echo "Test"
+            }
+        }
+       
+	}
+}

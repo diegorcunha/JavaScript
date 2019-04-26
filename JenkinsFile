@@ -9,10 +9,10 @@ pipeline {
             steps { 
 		sh '''#!/bin/sh
 			echo "Building..."
-			sudo gcloud auth configure-docker
-			sudo docker build -t testscrip:${BUILD_NUMBER} . 
-			sudo docker tag testscript:${BUILD_NUMBER} "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
-			sudo docker push "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
+			gcloud auth configure-docker
+			docker build -t testscrip:${BUILD_NUMBER} . 
+			docker tag testscript:${BUILD_NUMBER} "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
+			docker push "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
 		'''
             }
         }

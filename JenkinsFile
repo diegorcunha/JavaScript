@@ -1,13 +1,7 @@
 #!groovy
 pipeline {
 
-    agent {
-        kubernetes {
-            cloud 'kubernetes'
-            label 'docker-slave'
-            defaultContainer 'docker-slave'
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout') {

@@ -13,14 +13,24 @@ pipeline {
         }
     }
 
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    scmVars = checkout scm
+                    version = "${scmVars.GIT_COMMIT}"                    
+                }
+            }
+        }
 
         stage('Build') {
             steps {
+                echo "Build docker image"
                 script {
-                   image = docker.build("gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}","-f Dockerfile ${BUILD_NUMBER}")
+                    dockerImage = docker.build("${env.DOCKER_IMAGE_TAG}",  '-f ./Dockerfile .')
+                    pipelineContext.dockerImage = dockerImage
                 }
             }
-            
         }
 
         stage('Publish') {

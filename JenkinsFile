@@ -1,8 +1,4 @@
 #!groovy
-library 'pipeline-utils'
-
-configureSlack('#superstars-notify')
-
 pipeline {
 
     agent {

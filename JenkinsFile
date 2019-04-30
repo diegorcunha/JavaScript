@@ -3,7 +3,7 @@ pipeline {
 
     agent {
         kubernetes {
-            cloud 'kubernetes.default'
+            cloud 'kubernetes'
             label 'docker-slave'
             defaultContainer 'docker-slave'
         }

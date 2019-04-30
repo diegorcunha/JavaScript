@@ -1,26 +1,45 @@
-pipeline {
-    agent any 
+#!groovy
+library 'pipeline-utils'
 
-    stages {
-        stage('Build') { 
-	    when {
-                branch "master"
-	    }
-            steps { 
-		sh '''#!/bin/sh
-			echo "Building..."
-			gcloud auth configure-docker
-			docker build -t testscrip:${BUILD_NUMBER} . 
-			docker tag testscript:${BUILD_NUMBER} "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
-			docker push "gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}"
-		'''
-            }
+configureSlack('#superstars-notify')
+
+pipeline {
+
+    agent {
+        kubernetes {
+            cloud 'kubernetes'
+            label 'docker-slave'
+            defaultContainer 'docker-slave'
         }
-        stage('Test'){
-            steps {
-		echo "Test"
-            }
-        }
-	
     }
+
+
+        stage('Build') {
+            steps {
+                script {
+                   image = docker.build("gcr.io/analog-pilot-238717/testscript:${BUILD_NUMBER}","-f Dockerfile ${BUILD_NUMBER}")
+                }
+            }
+            
+        }
+
+        stage('Publish') {
+            steps {  
+                dockerPublish(image,version)
+            }
+        }
+        // We should talk about this... Ass: Eric
+        // stage('Api Test') {
+        //     when { branch "develop" }
+        //     steps {  
+        //         script{
+        //             image.inside{
+        //                 sh 'npm install'
+        //                 sh 'npm run test-api'
+        //             }
+        //         }
+        //     }
+        // }      
+    }
+
 }

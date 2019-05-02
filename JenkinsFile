@@ -8,19 +8,19 @@ pipeline {
     }
   }
 
-        stage('Build') {
-            steps {
-                echo "Build docker image"
-                script {
-                    dockerImage = docker.build("${env.DOCKER_IMAGE_TAG}",  '-f ./Dockerfile .')
-                    pipelineContext.dockerImage = dockerImage
+    stage('Build') {
+      steps {
+        echo "Build docker image"
+        script {
+            dockerImage = docker.build("${env.DOCKER_IMAGE_TAG}",  '-f ./Dockerfile .')
+            pipelineContext.dockerImage = dockerImage
                 }
             }
         }
 
-        stage('Publish') {
-            steps {  
-                dockerPublish(image,version)
+    stage('Publish') {
+      steps {  
+        dockerPublish(image,version)
             }
         }
         // We should talk about this... Ass: Eric
@@ -35,4 +35,6 @@ pipeline {
         //         }
         //     }
         // }      
-    }
+}
+
+

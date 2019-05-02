@@ -1,17 +1,13 @@
 #!groovy
 pipeline {
 
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    scmVars = checkout scm
-                    version = "${scmVars.GIT_COMMIT}"                    
-                }
-            }
-        }
+    agent {
+    kubernetes {
+      cloud 'kubernetes'
+      label 'docker-slave'
+      defaultContainer 'docker-slave'
+    }
+  }
 
         stage('Build') {
             steps {

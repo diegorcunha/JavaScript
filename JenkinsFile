@@ -13,7 +13,7 @@ pipeline {
             steps {
             echo "Build docker image"
             script {
-                dockerImage = docker.build("testCode:${BUILD_NUMBER}", "-f ./Dockerfile .")
+                dockerImage = docker.build("testCode:${BUILD_NUMBER}", ".")
                 pipelineContext.dockerImage = dockerImage
                     }
                 }

@@ -1,8 +1,8 @@
 pipeline {
 
     environment {
-        registry = ""
-        registryCredential = 'dockerhub'
+        registry = "gcr.io/analog-pilot-238717/testscript"
+        registryCredential = 'analog-pilot-238717'
         dockerImage = ''
       }
 
@@ -19,7 +19,7 @@ pipeline {
             steps {
             echo "Build docker image"
             script {
-                dockerImage = docker.build("testCode")
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 pipelineContext.dockerImage = dockerImage
                     }
                 }

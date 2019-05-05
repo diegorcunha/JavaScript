@@ -27,10 +27,7 @@ pipeline {
 
         stage('Publish') {
             steps {
-                script {
                     sh "docker push  "gcr.io/analog-pilot-238717/testscript:$BUILD_NUMBER""
-                                                                    }
-                    }
                 }
             }
             // We should talk about this... Ass: Eric

@@ -25,13 +25,15 @@ pipeline {
                 }
             }
 
-        stage('Publish') {
-            steps {
-             container('docker-slave') {
-             dockerPublish(app, $BUILD_NUMBER)
-                }
-              }
-            }
+        stage('Deploy Image') {
+          steps{
+            script {
+               docker.withRegistry( '', registryCredential ) {
+               dockerImage.push()
+          }
+        }
+      }
+    }
             // We should talk about this... Ass: Eric
             // stage('Api Test') {
             //     when { branch "develop" }

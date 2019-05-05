@@ -28,8 +28,7 @@ pipeline {
         stage('Publish') {
             steps {
                 script {
-                    docker.withRegistry('https://gcr.io', 'gcr:analog-pilot-238717') {
-                    dockerImage.push()
+                    sh "docker push  "gcr.io/analog-pilot-238717/testscript:$BUILD_NUMBER""
                                                                     }
                     }
                 }

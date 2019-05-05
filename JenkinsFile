@@ -26,8 +26,12 @@ pipeline {
             }
 
         stage('Publish') {
-            steps {  
-            dockerPublish(image,version)
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                                                                    }
+                    }
                 }
             }
             // We should talk about this... Ass: Eric

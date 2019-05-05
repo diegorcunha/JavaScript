@@ -1,5 +1,11 @@
 pipeline {
 
+    environment {
+        registry = ""
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+      }
+
     agent {
       kubernetes {
         cloud 'kubernetes'

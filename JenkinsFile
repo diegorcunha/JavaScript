@@ -28,7 +28,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh '''#!/bin/sh
-                    docker push "gcr.io'/'analog-pilot-238717/testscript':'$BUILD_NUMBER""
+                    docker push "gcr.io/analog-pilot-238717/testscript:$BUILD_NUMBER"
                 '''
                 }
             }

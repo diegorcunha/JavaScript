@@ -27,10 +27,9 @@ pipeline {
 
         stage('Deploy Image') {
           steps{
-            script {
                withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717']) {
                dockerImage.push(dockerImage)
-          }
+          
         }
       }
     }

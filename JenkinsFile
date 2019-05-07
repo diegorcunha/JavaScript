@@ -24,31 +24,8 @@ pipeline {
                     }
                 }
             }
+         
 
-          //stage('Publish') {
-            //steps {
-              //script{
-                // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
-                //}
-               //}
-             //}      
-           
-
-
-            
-
-            // We should talk about this... Ass: Eric
-            // stage('Api Test') {
-            //     when { branch "develop" }
-            //     steps {  
-            //         script{
-            //             image.inside{
-            //                 sh 'npm install'
-            //                 sh 'npm run test-api'
-            //             }
-            //         }
-            //     }
-            // }      
         }
 }
 

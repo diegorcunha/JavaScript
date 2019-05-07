@@ -23,7 +23,7 @@ pipeline {
             }
         }
         
-       stage('Publish') {
+       stage('Test') {
          steps {
            echo "Test the Image"
            script {

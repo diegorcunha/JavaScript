@@ -24,10 +24,14 @@ pipeline {
         }
         
       stage('Push image') {
-         docker.withRegistry('https://gcr.io', 'gcr:[analog-pilot-238717]') {
-         dockerImage.push("${env.BUILD_NUMBER}")
-         dockerImage.push("latest")
+        steps{
+          script{ 
+            docker.withRegistry('https://gcr.io', 'gcr:[analog-pilot-238717]') {
+            dockerImage.push("${env.BUILD_NUMBER}")
+            dockerImage.push("latest")
           }
+          }
+         }
      }
         
       }

@@ -1,7 +1,7 @@
 pipeline {
 
     environment {
-        registry = "gcr.io/analog-pilot-238717/testscript"
+        registry = "diegorcunha/testscript"
         registryCredential = 'analog-pilot-238717'
         dockerImage = ''
       }
@@ -26,15 +26,9 @@ pipeline {
             }
 
           stage('Publish') {
-            when {
-              anyOf {
-                branch "master"
-                branch "develop"
-                    }
-                }
             steps {
-              container('docker-slave') {
-                dockerPublish(dockerImage, $BUILD_NUMBER)
+              script{
+                 sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
                 }
                }
              }      

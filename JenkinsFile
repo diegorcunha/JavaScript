@@ -1,6 +1,6 @@
 pipeline {
      environment {
-        registry = "diegorcunha/testscript"
+        registry = "gcr.io/analog-pilot-238717/testscript"
         registryCredential = 'analog-pilot-238717'
         dockerImage = ''
       }
@@ -27,7 +27,7 @@ pipeline {
           steps {
           echo "Publish the Image"
           script{
-            sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
+            sh "docker pull registry + ":$BUILD_NUMBER""
                }
             }
         }

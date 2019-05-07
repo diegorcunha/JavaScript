@@ -25,13 +25,13 @@ pipeline {
                 }
             }
 
-          stage('Publish') {
-            steps {
-              script{
-                 sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
-                }
-               }
-             }      
+          //stage('Publish') {
+            //steps {
+              //script{
+                // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
+                //}
+               //}
+             //}      
            
 
 

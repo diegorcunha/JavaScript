@@ -6,11 +6,14 @@ pipeline {
       defaultContainer 'docker-slave'
       }
     }
-    stages {
-        stage('build') {
-            steps {
-                sh 'docker --version'
+   stages{
+      stage('Build') {
+        steps {
+          echo "Build docker image"
+          script {
+            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            pipelineContext.dockerImage = dockerImage
+                }
             }
         }
-    }
 }

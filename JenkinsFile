@@ -34,7 +34,7 @@ pipeline {
                 dockerImage.push(version)
                     }
                 }
-            }
+            
 
             // We should talk about this... Ass: Eric
             // stage('Api Test') {

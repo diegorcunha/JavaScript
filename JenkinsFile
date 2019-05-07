@@ -27,7 +27,7 @@ pipeline {
           steps {
           echo "Publish the Image"
           script{
-            sh "docker pull registry + ":$BUILD_NUMBER""
+            sh "docker pull gcr.io/analog-pilot-238717/testscript:$BUILD_NUMBER"
                }
             }
         }

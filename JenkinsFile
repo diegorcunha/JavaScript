@@ -1,36 +1,10 @@
-
 pipeline {
-
-  agent {
-    kubernetes {
-      cloud 'kubernetes'
-      label 'docker-slave'
-      defaultContainer 'docker-slave'
-      }
-    }
-
-    stages{
-      stage('Build') {
-        steps {
-          echo "Build docker image"
-          script {
-            dockerImage = docker.build registry + ":$BUILD_NUMBER"
-            pipelineContext.dockerImage = dockerImage
-                }
+    agent { docker { image 'python:3.5.1' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'python --version'
             }
         }
-            
-     
-       stage('Publish') {
-          steps {
-          echo "Publish the Image"
-       
-              //script{
-                // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
-                //}
-            }
-        }
-         
-
     }
 }

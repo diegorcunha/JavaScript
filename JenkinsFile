@@ -1,3 +1,4 @@
+
 pipeline {
 
     environment {
@@ -26,17 +27,16 @@ pipeline {
             }
             
      
-     stage('Publish') {
-       steps {
-         echo "Publish the Image"
+        stage('Publish') {
+            steps {
+            echo "Publish the Image"
        
               //script{
                 // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
                 //}
-               }
-             }
+            }
+        }
          
 
-        }
+    }
 }
-

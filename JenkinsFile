@@ -34,7 +34,7 @@ pipeline {
                 }
             steps {
               container('docker-slave') {
-                dockerPublish(app, version)
+                dockerPublish(dockerImage, $BUILD_NUMBER)
                 }
                }
              }      

@@ -27,8 +27,9 @@ pipeline {
           steps {
           echo "Publish the Image"
           script{
-            sh "docker pull gcr.io/analog-pilot-238717/testscript:$BUILD_NUMBER"
-               }
+              withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717/testscript']) {
+              dockerImage.push($BUILD_NUMBER)
+
             }
         }
         

@@ -25,15 +25,11 @@ pipeline {
                 }
             }
 
-        stage('Deploy Image') {
-          steps{
-                script{
-               withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717']) {
-               dockerImage.push(dockerImage)
-         } 
-        }
-      }
-    }
+        stage('Publish') {
+            steps {  
+            dockerPublish(dockerImage,$BUILD_NUMBER)
+                }
+            }
             // We should talk about this... Ass: Eric
             // stage('Api Test') {
             //     when { branch "develop" }

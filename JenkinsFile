@@ -22,5 +22,15 @@ pipeline {
                 }
             }
         }
+        
+       stage('Publish') {
+         steps {
+           echo "Test the Image"
+           script {
+             sh 'python --version'
+                }
+            }
+        }
+        
       }
 }

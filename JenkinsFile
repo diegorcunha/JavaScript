@@ -27,7 +27,7 @@ pipeline {
          steps {
            echo "Test the Image"
            script {
-             sh 'python --version'
+             sh 'docker --version'
                 }
             }
         }

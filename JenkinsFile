@@ -1,4 +1,3 @@
-
 pipeline {
 
     environment {
@@ -24,19 +23,7 @@ pipeline {
                 pipelineContext.dockerImage = dockerImage
                     }
                 }
-            }
-            
-     
-        stage('Publish') {
-            steps {
-            echo "Publish the Image"
-       
-              //script{
-                // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
-                //}
-            }
-        }
-         
+            } 
 
     }
 }

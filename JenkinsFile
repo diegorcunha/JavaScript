@@ -24,6 +24,16 @@ pipeline {
                     }
                 }
             }
+            
+     
+     stage('Publish') {
+        echo "Publish the Image"
+       //steps {
+              //script{
+                // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
+                //}
+               //}
+             }
          
 
         }

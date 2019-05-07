@@ -28,11 +28,11 @@ pipeline {
      
      stage('Publish') {
         echo "Publish the Image"
-       //steps {
+       steps {
               //script{
                 // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
                 //}
-               //}
+               }
              }
          
 

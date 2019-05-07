@@ -23,12 +23,12 @@ pipeline {
             }
         }
         
-       stage('Test') {
-         steps {
-           echo "Test the Image"
-           script {
-             sh 'docker --version'
-                }
+      stage('Publish') {
+          steps {
+          echo "Publish the Image"
+          script{
+            sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
+               }
             }
         }
         

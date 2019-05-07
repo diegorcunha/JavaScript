@@ -25,18 +25,12 @@ pipeline {
                 }
             }
 
-           stage('Publish'){
-              steps{  
-                // Setup properties file for deployer
-                writeFile file: 'deploy.properties', text: "image=$version"
-                archiveArtifacts 'deploy.properties'
-                    script{
-                        withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717']) {
-                        dockerImage.push(version)
-                        }
-                        }
-                    }
-                    }
+           steps {
+        container('docker-slave') {
+          dockerPublish(dockerImage, "$BUILD_NUMBER")
+        }
+      }
+
             
 
             // We should talk about this... Ass: Eric

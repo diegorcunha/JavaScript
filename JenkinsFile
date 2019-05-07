@@ -1,6 +1,6 @@
 pipeline {
      environment {
-        registry = "gcr.io/analog-pilot-238717/testscript"
+        registry = "gcr.io/analog-pilot-238717"
         registryCredential = 'analog-pilot-238717'
         dockerImage = ''
       }

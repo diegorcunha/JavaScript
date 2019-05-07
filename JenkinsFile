@@ -1,29 +1,36 @@
+
 pipeline {
 
-    environment {
-        registry = "diegorcunha/testscript"
-        registryCredential = 'analog-pilot-238717'
-        dockerImage = ''
+  agent {
+    kubernetes {
+      cloud 'kubernetes'
+      label 'docker-slave'
+      defaultContainer 'docker-slave'
       }
-
-    agent {
-      kubernetes {
-        cloud 'kubernetes'
-        label 'docker-slave'
-        defaultContainer 'docker-slave'
     }
-  }
 
     stages{
-        stage('Build') {
-            steps {
-            echo "Build docker image"
-            script {
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                pipelineContext.dockerImage = dockerImage
-                    }
+      stage('Build') {
+        steps {
+          echo "Build docker image"
+          script {
+            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            pipelineContext.dockerImage = dockerImage
                 }
-            } 
+            }
+        }
+            
+     
+       stage('Publish') {
+          steps {
+          echo "Publish the Image"
+       
+              //script{
+                // sh "docker push diegorcunha/testscript:$BUILD_NUMBER"
+                //}
+            }
+        }
+         
 
     }
 }

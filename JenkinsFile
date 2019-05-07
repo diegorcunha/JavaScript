@@ -32,7 +32,7 @@ pipeline {
                 archiveArtifacts 'deploy.properties'
 
                 withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717']) {
-                    dockerImage.push(version)
+                dockerImage.push(version)
                         }
                     }
                     }

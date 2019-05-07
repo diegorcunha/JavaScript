@@ -1,4 +1,10 @@
 pipeline {
+     environment {
+        registry = "diegorcunha/testscript"
+        registryCredential = 'analog-pilot-238717'
+        dockerImage = ''
+      }
+
     agent {
     kubernetes {
       cloud 'kubernetes'

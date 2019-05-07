@@ -25,11 +25,21 @@ pipeline {
                 }
             }
 
-           steps {
-        container('docker-slave') {
-          dockerPublish(dockerImage, "$BUILD_NUMBER")
-        }
-      }
+          stage('Publish') {
+            when {
+              anyOf {
+                branch "master"
+                branch "develop"
+                    }
+                }
+            steps {
+              container('docker-slave') {
+                dockerPublish(app, version)
+                }
+               }
+             }      
+           }
+
 
             
 

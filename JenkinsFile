@@ -29,9 +29,10 @@ pipeline {
           script{
               withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717/testscript']) {
               dockerImage.push($BUILD_NUMBER)
-
+              }
+             }
             }
-        }
+          } 
         
       }
 }

@@ -26,7 +26,7 @@ pipeline {
       stage('Push image') {
         steps{
           script{ 
-            docker.withRegistry('https://gcr.io', 'gcr:[analog-pilot-238717]') {
+            docker.withRegistry('https://gcr.io', 'gcr:analog-pilot-238717') {
             dockerImage.push("${env.BUILD_NUMBER}")
             dockerImage.push("latest")
           }

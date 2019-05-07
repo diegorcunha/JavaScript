@@ -30,9 +30,10 @@ pipeline {
                 // Setup properties file for deployer
                 writeFile file: 'deploy.properties', text: "image=$version"
                 archiveArtifacts 'deploy.properties'
-
-                withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717']) {
-                dockerImage.push(version)
+                    script{
+                        withDockerRegistry([credentialsId: 'analog-pilot-238717', url: 'gcr.io/analog-pilot-238717']) {
+                        dockerImage.push(version)
+                        }
                         }
                     }
                     }
